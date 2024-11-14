@@ -17,9 +17,9 @@ public class GestionarProductos {
         if (!file.exists()) {
             try {
                 file.createNewFile(); // Crea el archivo vacío
-                System.out.println("Archivo no encontrado. Se ha creado un nuevo archivo vacío: " + JSON_FILE);
+                System.out.println("File not found. A new empty file has been created: " + JSON_FILE);
             } catch (IOException e) {
-                System.out.println("Error al crear el archivo: " + e.getMessage());
+                System.out.println("Error creating the file: " + e.getMessage());
                 return;
             }
         }
@@ -42,7 +42,7 @@ public class GestionarProductos {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error al cargar los productos: " + e.getMessage());
+            System.out.println("Error loading products: " + e.getMessage());
         }
     }
 
@@ -52,9 +52,9 @@ public class GestionarProductos {
             Gson gson = new Gson();
             String json = gson.toJson(productos); // Convertir la lista de productos a JSON
             bw.write(json);
-            System.out.println("Productos guardados correctamente.");
+            System.out.println("Products saved correctly.");
         } catch (IOException e) {
-            System.out.println("Error al guardar los productos: " + e.getMessage());
+            System.out.println("Error saving products: " + e.getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ public class GestionarProductos {
                 categoria.setProductos(productos != null ? productos : new ArrayList<>());
             }
         } catch (IOException e) {
-            System.out.println("Error al cargar los productos de la categoría: " + e.getMessage());
+            System.out.println("Error loading products from category: " + e.getMessage());
         }
     }
 
@@ -83,23 +83,23 @@ public class GestionarProductos {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
             String json = gson.toJson(categoria.getProductos());
             writer.write(json);
-            System.out.println("Productos guardados correctamente en la categoría: " + categoria.getNombre());
+            System.out.println("Products saved correctly in the category: " + categoria.getNombre());
         } catch (IOException e) {
-            System.out.println("Error al guardar los productos de la categoría: " + e.getMessage());
+            System.out.println("Error saving products from category: " + e.getMessage());
         }
     }
 
     // Agregar un producto a una categoría específica
     public static void agregarProducto() {
-        System.out.print("Ingrese el ID de la categoría a la que desea agregar un producto: ");
+        System.out.print("Enter the ID of the category to which you want to add a product: ");
         int categoriaId = scanner.nextInt();
         scanner.nextLine(); // Consumir salto de línea
 
         Categoria categoria = GestionarCategoria.buscarCategoriaPorId(categoriaId);
         if (categoria != null) {
-            System.out.print("Ingrese el nombre del producto: ");
+            System.out.print("Enter the product name: ");
             String nombreProducto = scanner.nextLine();
-            System.out.print("Ingrese el precio del producto: ");
+            System.out.print("Enter the product price: ");
             double precio = scanner.nextDouble();
             scanner.nextLine(); // Consumir salto de línea
 
@@ -108,85 +108,85 @@ public class GestionarProductos {
             categoria.getProductos().add(producto);
 
             guardarProductosPorCategoria(categoria);
-            System.out.println("Producto agregado exitosamente.");
+            System.out.println("Product added successfully.");
         } else {
-            System.out.println("Categoría no encontrada.");
+            System.out.println("Category not found.");
         }
     }
 
     // Mostrar los productos de una categoría
     public static void mostrarProductos() {
-        System.out.print("Ingrese el ID de la categoría de la cual desea ver los productos: ");
+        System.out.print("Enter the ID of the category from which you want to view the products: ");
         int categoriaId = scanner.nextInt();
         scanner.nextLine(); // Consumir salto de línea
 
         Categoria categoria = GestionarCategoria.buscarCategoriaPorId(categoriaId);
         if (categoria != null && !categoria.getProductos().isEmpty()) {
-            System.out.println("Productos en la categoría: " + categoria.getNombre());
+            System.out.println("Products in category: " + categoria.getNombre());
             for (Producto producto : categoria.getProductos()) {
                 System.out.println(producto);
             }
         } else {
-            System.out.println("No hay productos en esta categoría o la categoría no existe.");
+            System.out.println("There are no products in this category or the category does not exist.");
         }
     }
 
     // Modificar un producto en una categoría
     public static void modificarProducto() {
-        System.out.print("Ingrese el ID de la categoría donde se encuentra el producto a modificar: ");
+        System.out.print("Enter the ID of the category where the product to be modified is located: ");
         int categoriaId = scanner.nextInt();
         scanner.nextLine(); // Consumir salto de línea
 
         Categoria categoria = GestionarCategoria.buscarCategoriaPorId(categoriaId);
         if (categoria != null) {
-            System.out.print("Ingrese el ID del producto a modificar: ");
+            System.out.print("Enter the ID of the product to modify: ");
             int idProducto = scanner.nextInt();
             scanner.nextLine(); // Consumir salto de línea
 
             Producto productoAmodificar = buscarProductoPorId(categoria, idProducto);
             if (productoAmodificar != null) {
-                System.out.print("Ingrese el nuevo nombre del producto: ");
+                System.out.print("Enter the new product name: ");
                 String nuevoNombre = scanner.nextLine();
-                System.out.print("Ingrese el nuevo precio del producto: ");
+                System.out.print("Enter the new product price: ");
                 double nuevoPrecio = scanner.nextDouble();
                 scanner.nextLine(); // Consumir salto de línea
 
                 productoAmodificar.setNombre(nuevoNombre);
                 productoAmodificar.setPrecio(nuevoPrecio);
-                System.out.println("Producto modificado exitosamente.");
+                System.out.println("Product successfully modified.");
 
                 guardarProductosPorCategoria(categoria);
             } else {
-                System.out.println("Producto no encontrado.");
+                System.out.println("Product not found.");
             }
         } else {
-            System.out.println("Categoría no encontrada.");
+            System.out.println("Category not found.");
         }
     }
 
     // Eliminar un producto de una categoría
     public static void eliminarProducto() {
-        System.out.print("Ingrese el ID de la categoría donde se encuentra el producto a eliminar: ");
+        System.out.print("Enter the ID of the category where the product to be removed is located: ");
         int categoriaId = scanner.nextInt();
         scanner.nextLine(); // Consumir salto de línea
 
         Categoria categoria = GestionarCategoria.buscarCategoriaPorId(categoriaId);
         if (categoria != null) {
-            System.out.print("Ingrese el ID del producto a eliminar: ");
+            System.out.print("Enter the product ID to delete: ");
             int idProducto = scanner.nextInt();
             scanner.nextLine(); // Consumir salto de línea
 
             Producto productoAeliminar = buscarProductoPorId(categoria, idProducto);
             if (productoAeliminar != null) {
                 categoria.getProductos().remove(productoAeliminar);
-                System.out.println("Producto eliminado exitosamente.");
+                System.out.println("Product successfully removed.");
 
                 guardarProductosPorCategoria(categoria);
             } else {
-                System.out.println("Producto no encontrado.");
+                System.out.println("Product not found.");
             }
         } else {
-            System.out.println("Categoría no encontrada.");
+            System.out.println("Category not found.");
         }
     }
 

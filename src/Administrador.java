@@ -10,10 +10,10 @@ public class Administrador {
         int opcion;
 
         do {
-            System.out.println("\n1. Gestionar Productos");
-            System.out.println("2. Gestionar Categorías");
-            System.out.println("3. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("\n1. manage products");
+            System.out.println("2. manage categories");
+            System.out.println("3. leave");
+            System.out.print("select an option: ");
             opcion = s.nextInt();
             s.nextLine(); // Consumir el salto de línea
 
@@ -25,10 +25,10 @@ public class Administrador {
                     menuCategorias();
                     break;
                 case 3:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("Leaving the program...");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Option not valid.");
             }
         } while (opcion != 3);
 
@@ -39,12 +39,12 @@ public class Administrador {
     public static void menuCategorias() {
         int opcion;
         do {
-            System.out.println("\n1. Agregar Categoría");
-            System.out.println("2. Mostrar Categorías");
-            System.out.println("3. Modificar Categorías");
-            System.out.println("4. Eliminar Categorías");
-            System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("\n1. Add Category");
+            System.out.println("2. show categories");
+            System.out.println("3. Modify Categories");
+            System.out.println("4. remove categories");
+            System.out.println("5. leave");
+            System.out.print("Please select an option: ");
             opcion = s.nextInt();
 
             switch (opcion) {
@@ -61,10 +61,10 @@ public class Administrador {
                     GestionarCategoria.eliminarCategoria();
                     break;
                 case 5:
-                    System.out.println("Saliendo...");
+                    System.out.println("coming out");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Option not valid.");
             }
         } while (opcion != 5);
     }
@@ -72,12 +72,12 @@ public class Administrador {
     public static void menuProductos() {
         int opcion;
         do {
-            System.out.println("\n1. Agregar Producto");
-            System.out.println("2. Mostrar Productos");
-            System.out.println("3. Modificar Producto");
-            System.out.println("4. Eliminar Producto");
-            System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("\n1.Add product");
+            System.out.println("2. show products");
+            System.out.println("3. Modify Product");
+            System.out.println("4. Remove product");
+            System.out.println("5. Leave");
+            System.out.print("Please select an option: ");
             opcion = s.nextInt();
 
             switch (opcion) {
@@ -96,10 +96,10 @@ public class Administrador {
                     GestionarProductos.eliminarProducto();
                     break;
                 case 5:
-                    System.out.println("Saliendo...");
+                    System.out.println("coming out");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Option not valid.");
             }
         } while (opcion != 5);
     }
